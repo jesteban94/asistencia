@@ -9,21 +9,43 @@ class asistencia(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome()
-        self.mis_vent = self.driver.window_handles[0]
-
 
     def test_navegador(self):
         navegador = self.driver
         navegador.get("https://www.ucundinamarca.edu.co/")
-        navegador.execute_script("window.open('');")
+        main_page = navegador.current_window_handle
+        pag=navegador.title
+        time.sleep(10)
 
-        time.sleep(20)
+        print(pag)
+
+
         buplataforma = navegador.find_element_by_xpath("//*[@id='sppb-addon-1565022666579']/div/div/div/a[3]")
-        time.sleep(5)
-        buplataforma.click()
+        time.sleep(3)
 
+        buplataforma.click()
         time.sleep(5)
-        usuario = navegador.find_element_by_id("usuario")
+
+        print(main_page)
+
+        for handle in navegador.window_handles:
+            if handle != main_page:
+                login_page = handle
+
+        pagi = navegador.title
+        time.sleep(2)
+
+        print(pagi)
+
+        navegador.switch_to.window(login_page)
+        venta= navegador.window_handles
+        pagina= navegador.title
+        time.sleep(5)
+
+        print(venta)
+        print(pagina)
+
+        usuario = navegador.find_element_by_xpath("//*[@id='usuario']")
         usuario.send_Keys("jezamora")
         time.sleep(10)
 
