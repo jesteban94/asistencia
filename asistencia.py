@@ -25,6 +25,7 @@ class asistencia(unittest.TestCase):
 
         buplataforma.click()
         time.sleep(5)
+        #no sube
 
         print(main_page)
 
